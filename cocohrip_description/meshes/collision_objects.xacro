@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="collision_objects" >
+
+<link name="table">
+      <visual>
+        <geometry>
+          <mesh filename="package://ur5e_cocohrip_driver/meshes/collision_objects/cocohrip.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://ur5e_cocohrip_driver/meshes/collision_objects/cocohrip.dae" />
+        </geometry>
+      </collision>
+    </link>
+
+<!--<link name="wall">
+      <visual>
+        <geometry>
+           <box size="2 0.1 2" />
+        </geometry>
+        <material name="LightGrey">
+          <color rgba="1 1 1 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="2 0.1 2" />
+        </geometry>
+      </collision>
+    </link> -->
+
+  <joint name="table_joint" type="fixed">
+    <parent link="world" />
+    <child link = "table" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+  </joint>
+
+ <!-- <joint name="wall_joint" type="fixed">
+    <parent link="base_link" />
+    <child link = "wall" />
+    <origin xyz="0 -0.2 0.0" rpy="0.0 0.0 0.0" />
+  </joint> -->
+
+
+</robot>

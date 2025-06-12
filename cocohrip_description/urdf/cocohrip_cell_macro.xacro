@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find ur_description)/urdf/ur_macro.xacro"/>
+
+  <xacro:macro name="cocohrip_cell" params="
+    parent
+    *origin
+    ur_type
+    joint_limits_parameters_file
+    kinematics_parameters_file
+    physical_parameters_file
+    visual_parameters_file
+    ">
+
+    <joint name="table_base_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="table" />
+    </joint>
+
+    <link name="table">
+      <visual>
+        <geometry>
+          <mesh filename="package://cocohrip_description/meshes/cocohrip.dae"/>
+        </geometry>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://cocohrip_description/meshes/cocohrip.dae" />
+        </geometry>
+      </collision>
+    </link>
+
+<!--<link name="wall">
+      <visual>
+        <geometry>
+           <box size="2 0.1 2" />
+        </geometry>
+        <material name="LightGrey">
+          <color rgba="1 1 1 1.0"/>
+        </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="2 0.1 2" />
+        </geometry>
+      </collision>
+    </link> -->
+
+     <!-- <joint name="wall_joint" type="fixed">
+    <parent link="robot_mount" />
+    <child link = "wall" />
+    <origin xyz="0 -0.2 0.0" rpy="0.0 0.0 0.0" />
+  </joint> -->
+
+    <link name="robot_mount"/>
+    <joint name="base_to_robot_mount" type="fixed">
+      <parent link="table"/>
+      <child link="robot_mount"/>
+      <origin xyz="1.05003  0.69327 0.01035" rpy="0.0 0.0 3.1415927" /> 
+    </joint>
+
+    <!--This will create the specific robot-->
+    <xacro:ur_robot
+      name="${ur_type}"
+      tf_prefix="${ur_type}_"
+      parent="robot_mount"
+      joint_limits_parameters_file="${joint_limits_parameters_file}"
+      kinematics_parameters_file="${kinematics_parameters_file}"
+      physical_parameters_file="${physical_parameters_file}"
+      visual_parameters_file="${visual_parameters_file}"
+    >
+      <origin xyz="0 0 0" rpy="0 0 0" />
+    </xacro:ur_robot>
+  </xacro:macro>
+
+</robot>
