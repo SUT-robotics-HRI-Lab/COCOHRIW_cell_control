@@ -1,0 +1,14 @@
+# Goal
+geometry_msgs/Pose target_pose
+string frame_id
+bool is_cartesian
+
+---
+# Result
+bool success
+string message
+
+---
+# Feedback
+string stage
+float32 progress_percent

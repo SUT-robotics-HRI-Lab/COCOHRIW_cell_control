@@ -47,10 +47,24 @@ def generate_launch_description():
         )
     )
 
+    gripper_control = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            PathJoinSubstitution([
+                FindPackageShare("robotiq_hande_ros2_driver"),
+                "launch",
+                "gripper_bringup.launch.py"
+            ])
+        ),
+        launch_arguments={
+            "robot_ip": LaunchConfiguration("robot_ip"),
+        }.items(),
+    )
+
     return LaunchDescription(
         declared_arguments + [
             start_robot_control,
             move_group,
             moveit_rviz,
+            gripper_control,
         ]
     )

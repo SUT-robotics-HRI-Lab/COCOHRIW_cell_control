@@ -1,0 +1,13 @@
+# Goal
+manipulator_control/TaskStep[] steps
+
+---
+# Result
+bool success
+string message
+
+---
+# Feedback
+uint32 current_step_index
+string step_description
+float32 progress_percent

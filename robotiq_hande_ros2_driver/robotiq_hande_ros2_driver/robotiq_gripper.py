@@ -105,18 +105,18 @@ class RobotiqGripper:
         with self.command_lock:
             #cmd = f"GET {variable}\n"
             cmd = "GET {variable}\n".format(variable=variable)
-            print("Sending data raw: ", cmd)
-            print("Sending data: ", cmd.encode(self.ENCODING))
+            # print("Sending data raw: ", cmd)
+            # print("Sending data: ", cmd.encode(self.ENCODING))
             self.socket.sendall(cmd.encode(self.ENCODING))
             data = self.socket.recv(1024)
-            print("Raw data: ", data)
+            # print("Raw data: ", data)
 
         # expect data of the form 'VAR x', where VAR is an echo of the variable name, and X the value
         # note some special variables (like FLT) may send 2 bytes, instead of an integer. We assume integer here
         var_name, value_str = data.decode(self.ENCODING).split()
-        print("var_name: ", var_name)
-        print("value_str: ", value_str)
-        print("variable: ", variable)
+        # print("var_name: ", var_name)
+        # print("value_str: ", value_str)
+        # print("variable: ", variable)
         if var_name != variable:
             #raise ValueError(f"Unexpected response {data} ({data.decode(self.ENCODING)}): does not match '{variable}'")
             raise ValueError("unexpected response")
