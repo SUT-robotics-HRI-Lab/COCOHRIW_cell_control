@@ -1,0 +1,25 @@
+moveit_setup_assistant_config:
+  urdf:
+    package: cocohrip_description
+    relative_path: urdf/cocohrip_cell.urdf.xacro
+  srdf:
+    relative_path: config/cocohrip_cell.srdf
+  package_settings:
+    author_name: Marek Cornak
+    author_email: marek.cornak@stuba.sk
+    generated_timestamp: 1749767474
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
+  modified_urdf:
+    xacros:
+      - control_xacro
+  control_xacro:
+    command:
+      - position
+    state:
+      - position
+      - velocity
