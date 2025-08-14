@@ -32,7 +32,7 @@
     physical_parameters_file="$(arg physical_parameters_file)"
     visual_parameters_file="$(arg visual_parameters_file)"
   >
-    <origin xyz="0 0 1" rpy="0 0 0" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
   </xacro:cocohrip_cell>
 
   <!--Create the control tag for the UR robot-->
